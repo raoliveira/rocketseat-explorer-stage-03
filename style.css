@@ -23,15 +23,26 @@ body {
     background-color: var(--bg-primary);
     font-family: var(--ff-texting);
     font-size: var(--fs-body);
+    /* height: 100vw; */
 }
 
 .page {
-    width: 38.4rem;
+    max-width: clamp(33rem, 30rem + 60vw, 117rem);
+    padding: 0 5rem;
     margin: 0 auto;
     display: grid;
+
+    
+}
+
+img {
+    width: 100%;
+    height: auto;
 }
 
 header {
+    text-align: center;
+
     background-color: var(--bg-header);
     height: 27.9rem;
     margin-bottom: 1.4rem;
@@ -53,11 +64,11 @@ header img {
     animation-timing-function: ease;
 }
 
-h1 {
+header h1 {
 
     font-family: var(--ff-heading);
     font-weight: 400;
-    font-size: 40px;
+    font-size: 4.0rem;
     color: #FFFFFF;
     text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
     background-color: #CBC0D3;
@@ -68,9 +79,12 @@ h1 {
 }
 
 main {
-    width: 32rem;
-    margin: 0 auto;
+    /* min-width: 32rem; */
+    display: grid;
+    gap: 3.2rem;
 
+    align-items: start;
+    justify-content: center;
 
 }
 
@@ -90,22 +104,23 @@ main p {
 
 .card {
     position: relative;
+
 }
 
 .card img {
     object-fit: cover;
+    
 
     filter: brightness(0.5) saturate(0.6);
 
     transition: all 200ms;
 
-    animation-name: downtop;
-    animation-duration: 700ms;
-    animation-fill-mode: forwards;
-    animation-delay: 500ms;
-    animation-timing-function: ease;
 }
-
+.card img:hover {
+    transform: scale(1.1);
+    
+    opacity: 0.4 ;
+}
 .card span {
     position: absolute;
     top: 1.6rem;
@@ -121,9 +136,12 @@ main p {
     text-align: center;
 
 
+    padding: 0 1.6rem;
 
-    width: 11.2rem;
+    width: fit-content;
     height: 3.5rem;
+    display: inline-flex;
+
 
     background: var(--bg-span);
     border-radius: 2.0rem;
@@ -136,14 +154,18 @@ main p {
     animation-timing-function: ease;
 }
 
-footer  {
-    font-family: var(--ff-texting-footer);
-font-weight: 400;
-font-size: 1.4rem;
-line-height: 2.8rem;
 
-text-align: center;
-color: var(--fc-secondary);
+
+footer {
+    visibility: hidden;
+    
+    font-family: var(--ff-texting-footer);
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 2.8rem;
+
+    text-align: center;
+    color: var(--fc-secondary);
 }
 footer a {
     font-weight: 700;
@@ -152,20 +174,118 @@ footer a {
  
 }
 
-@media (max-width: 700px) {
-    footer {
-        display: none;
-    }
+header .desc {
+    /* margin-bottom: 200px; */
 }
-@media (min-width: 700px) {
-    footer {
-        display: inline;
+
+@media (min-width: 600px) {
+   
+     main {
+       /* grid-template-columns: 1fr 1fr; */
+       grid-template-areas: "A B"
+                            "C D"
+                            "E F";
+       align-items: start;
+     }
+     main div:nth-child(1) {
+        grid-area: A;
     }
 
+    main div:nth-child(2) {
+        grid-area: B;
+    }
+    
+    main div:nth-child(3) {
+        grid-area: C;
+    }
+   
+    main div:nth-child(4) {
+        grid-area: D;
+    }
+    
+    main div:nth-child(5) {
+        grid-area: E;
+    }
+    
+    main div:nth-child(6) {
+        grid-area: F;
+    }   
+   }
+
+@media (min-width: 930px) {
+    .page {
+        
+       
+        grid-template-areas:    "side cont"
+                                "side footer"
+                                ;
+        grid-template-columns: 350px 100%;
+        gap: 20px;
+    }
+           
+    
+
+    /* .topo {
+        // height: 100vw; //
+        grid-area: side;
+        background-color: var(--bg-header);
+        border: 1px solid blue ;
+
+    } */
+    .card {
+        position: relative;
+    }
+    header {
+        grid-area: side;
+    }
+    
+    
+    footer {
+        width: 100vh;
+        grid-area: footer;
+        visibility: visible;
+        
+    }
     main {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
+        grid-area: cont;
+
+        width: 100rem;
+        display: grid;
+        grid-template-areas:    "A B C"
+                                "D B E"
+                                "D F E";
+
+    }
+
+
+    main div:nth-child(1) {
+        grid-area: A;
+    }
+
+    main div:nth-child(2) {
+        grid-area: B;
+    }
+    
+    main div:nth-child(3) {
+        grid-area: C;
+    }
+   
+    main div:nth-child(4) {
+        grid-area: D;
+    }
+    
+    main div:nth-child(5) {
+        grid-area: E;
+    }
+    
+    main div:nth-child(6) {
+        grid-area: F;
+    } 
+     
 }
+     
+
+   
 
 @keyframes topdown {
     0% {
